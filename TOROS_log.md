@@ -29,11 +29,10 @@ stilizzato.
   sottile) + Inter (testo), caricati da Google Fonts.
 - `script.js` — solo vanilla JS: reveal delle sezioni allo scroll (IntersectionObserver), stato
   attivo nella navbar, toggle del menu mobile. Niente dipendenze.
-- `assets/hero-smoke.jpg` — texture di fumo dello sfondo hero (2560x1440, ~55KB), con
-  vignettatura e bagliore centrale gia' "cotti" dentro. Usata come `background` di `.hero`.
-- `assets/make_smoke.py` — script Python (numpy + Pillow) che genera `hero-smoke.jpg`.
-  Per rigenerarla/modificarla (intensita', direzione volute, tinta): edita i parametri in
-  cima e lancia `python3 assets/make_smoke.py`.
+- `assets/hero.jpg` — immagine UNICA della hero (1536x711, mockup generato in chat): pieghe
+  di fumo + logo + "TOROS" + scroll gia' "stampati" dentro. Usata come `background: cover` di
+  `.hero`. La navbar vera ci va sopra; nell'HTML l'hero ha solo un `h1.visually-hidden` (SEO).
+  Per cambiare lo sfondo hero basta sostituire questo file.
 - `assets/logo.svg` — logo ufficiale (toro stilizzato, bianco, pensato per sfondo scuro).
 - `assets/logo-placeholder.svg` — vecchio segnaposto, non più usato in pagina.
 - `assets/team/` — foto reali: `team-1.jpg` (squadra), `match-1.jpg`, `match-2.jpg` (partite).
@@ -82,3 +81,10 @@ stilizzato.
   radente + vignetta/bloom cotti) produce `assets/hero-smoke.jpg`, usata come background
   di `.hero`. Niente immagini di terzi (zero problemi di licenza). Tolto tutto il blocco
   SVG smoke da index.html e le regole `.smoke*` da style.css.
+- 2026-06-28 — Anche la texture procedurale non eguagliava le "pieghe/dune" del mockup
+  (il mockup e' di fatto seta nera fotografata). Decisione di Ale: usare DIRETTAMENTE
+  l'immagine del mockup (generata in chat, niente problemi di copyright, sito non
+  commerciale). Hero ora = `assets/hero.jpg` a tutto schermo; logo/TOROS/scroll sono dentro
+  l'immagine (non cliccabili, scelta voluta). Rimossi `assets/hero-smoke.jpg` e
+  `assets/make_smoke.py` (non piu' usati). Tolti dall'HTML logo/h1/claim/scroll della hero,
+  lasciato un `h1.visually-hidden` per SEO. Per cambiare la hero: sostituire `assets/hero.jpg`.

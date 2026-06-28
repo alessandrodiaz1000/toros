@@ -129,19 +129,23 @@ a { color: inherit; }
 }
 
 /* ── Hero ── */
-/* Sfondo: texture di fumo rasterizzata (assets/hero-smoke.jpg), generata con
-   make_smoke.py. Ha gia' la vignettatura e il bagliore centrale "cotti" nell'immagine,
-   quindi sfuma da sola nel nero delle sezioni sotto. */
+/* Hero = immagine unica (assets/hero.jpg, mockup con fumo+logo+TOROS+scroll gia' dentro),
+   a tutto schermo con cover. Il contenuto e' centrato nell'immagine, quindi l'eventuale
+   ritaglio ai lati su schermi molto stretti non taglia il logo. */
 .hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 0 20px;
-  background: #000 url('assets/hero-smoke.jpg') center / cover no-repeat;
+  background: #000 url('assets/hero.jpg') center / cover no-repeat;
+}
+
+/* Testo accessibile ma non visibile (l'h1 reale e' "stampato" nell'immagine hero). */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  overflow: hidden; white-space: nowrap;
 }
 
 .hero-logo {
