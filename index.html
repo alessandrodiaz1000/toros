@@ -19,7 +19,9 @@
 
 <nav class="navdots">
   <a href="#chi-siamo">Chi siamo</a>
+  <a href="#numeri">Numeri</a>
   <a href="#squadra">Squadra</a>
+  <a href="#calendario">Calendario</a>
   <a href="#sponsor">Sponsor</a>
   <a href="#contatti">Contatti</a>
 </nav>
@@ -33,7 +35,40 @@
   </p>
 </section>
 
-<section id="squadra" class="section section-dark">
+<!--
+  SEZIONE NUMERI — sostituire i valori segnaposto (data-placeholder="true") con i dati reali:
+  campionato/torneo, partite giocate, vittorie, follower social. Basta cambiare il testo dentro
+  ogni <span class="stat-value">.
+-->
+<section id="numeri" class="section section-dark">
+  <h2>I numeri</h2>
+  <div class="stats-grid">
+    <div class="stat">
+      <span class="stat-value" data-placeholder="true">—</span>
+      <span class="stat-label">Campionato / torneo</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" data-placeholder="true">0</span>
+      <span class="stat-label">Partite giocate</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" data-placeholder="true">0</span>
+      <span class="stat-label">Vittorie</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" data-placeholder="true">0</span>
+      <span class="stat-label">Follower social</span>
+    </div>
+  </div>
+</section>
+
+<!--
+  SEZIONE SQUADRA / GALLERIA — per aggiungere foto reali:
+  1. Metti i file immagine in assets/team/ (es. assets/team/foto1.jpg)
+  2. Sostituisci ogni <div class="ph-card"> con <img class="gallery-img" src="assets/team/foto1.jpg" alt="...">
+  Il numero di foto può essere qualsiasi: la grid si adatta da sola (vedi .grid-placeholder in style.css).
+-->
+<section id="squadra" class="section">
   <h2>La squadra</h2>
   <div class="grid-placeholder">
     <div class="ph-card">Foto squadra</div>
@@ -43,6 +78,22 @@
   </div>
 </section>
 
+<!--
+  SEZIONE CALENDARIO — aggiungi/rimuovi righe <tr> con le partite reali (data, avversario,
+  orario, casa/trasferta). Lascia la struttura della tabella com'è.
+-->
+<section id="calendario" class="section section-dark">
+  <h2>Prossime partite</h2>
+  <table class="match-table">
+    <thead>
+      <tr><th>Data</th><th>Avversario</th><th>Orario</th><th>Dove</th></tr>
+    </thead>
+    <tbody>
+      <tr><td data-placeholder="true">—</td><td data-placeholder="true">—</td><td data-placeholder="true">—</td><td data-placeholder="true">—</td></tr>
+    </tbody>
+  </table>
+</section>
+
 <section id="sponsor" class="section sponsor">
   <h2>Diventa nostro sponsor</h2>
   <p>
@@ -50,12 +101,60 @@
     marchio al fianco di Toros significa visibilità autentica, vicinanza al territorio e
     associazione a un gruppo che gioca pulito e si impegna fuori dal campo quanto dentro.
   </p>
+
+  <!--
+    PACCHETTI SPONSOR — sostituisci titolo/prezzo/benefit di ogni card con l'offerta reale.
+    Aggiungi o rimuovi <div class="tier-card"> per più o meno pacchetti.
+  -->
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <h3 data-placeholder="true">Bronze</h3>
+      <p class="tier-price" data-placeholder="true">€ —</p>
+      <ul>
+        <li data-placeholder="true">Logo sul sito</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <h3 data-placeholder="true">Silver</h3>
+      <p class="tier-price" data-placeholder="true">€ —</p>
+      <ul>
+        <li data-placeholder="true">Logo sul sito</li>
+        <li data-placeholder="true">Logo sui social</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <h3 data-placeholder="true">Gold</h3>
+      <p class="tier-price" data-placeholder="true">€ —</p>
+      <ul>
+        <li data-placeholder="true">Logo sul sito</li>
+        <li data-placeholder="true">Logo sui social</li>
+        <li data-placeholder="true">Logo sulla maglia</li>
+      </ul>
+    </div>
+  </div>
+
   <a href="mailto:info@toros.it" class="cta cta-light">Scrivici per una proposta</a>
+  <!--
+    MEDIA KIT — quando esiste un PDF reale, metti il file in assets/docs/media-kit.pdf
+    e cambia questo link da mailto a href="assets/docs/media-kit.pdf" download.
+  -->
+  <p class="media-kit-note">
+    Vuoi un riepilogo numeri, foto e pacchetti in PDF?
+    <a href="mailto:info@toros.it?subject=Richiesta%20media%20kit">Richiedi il media kit</a>
+  </p>
 </section>
 
 <footer id="contatti" class="footer">
   <p>Toros — Squadra di calcio amatoriale, fondata nel 2024</p>
   <p><a href="mailto:info@toros.it">info@toros.it</a></p>
+  <!--
+    SOCIAL — sostituisci i # con i link reali (Instagram, TikTok, ecc.) o rimuovi le righe
+    per i social che non avete.
+  -->
+  <p class="social-links">
+    <a href="#" data-placeholder="true">Instagram</a>
+    <a href="#" data-placeholder="true">TikTok</a>
+  </p>
 </footer>
 
 </body>
