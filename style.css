@@ -17,10 +17,9 @@ body {
 }
 
 h1, h2 {
-  font-family: 'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', sans-serif;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-weight: 500;
 }
 
 a { color: inherit; }
@@ -41,7 +40,7 @@ a { color: inherit; }
 
 .navbar-mark img {
   width: 34px;
-  height: 34px;
+  height: auto;
   display: block;
 }
 
@@ -129,43 +128,34 @@ a { color: inherit; }
 }
 
 /* ── Hero ── */
-/* Hero = immagine unica (assets/hero.jpg, mockup con fumo+logo+TOROS+scroll gia' dentro),
-   a tutto schermo con cover. Il contenuto e' centrato nell'immagine, quindi l'eventuale
-   ritaglio ai lati su schermi molto stretti non taglia il logo. */
+/* Sfondo: foto/texture di fumo (assets/hero.jpg, senza testo dentro), a tutto schermo
+   con cover. Logo, "TOROS", divider e scroll sono elementi HTML veri centrati sopra:
+   restano nitidi a qualsiasi risoluzione anche se il fumo sotto resta morbido. */
 .hero {
   position: relative;
-  background: #000;
-  line-height: 0;            /* niente gap sotto l'immagine */
-}
-
-/* L'immagine si mostra INTERA (niente ritaglio): larghezza piena, altezza naturale. */
-.hero-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Testo accessibile ma non visibile (l'h1 reale e' "stampato" nell'immagine hero). */
-.visually-hidden {
-  position: absolute;
-  width: 1px; height: 1px;
-  margin: -1px; padding: 0; border: 0;
-  clip: rect(0 0 0 0); clip-path: inset(50%);
-  overflow: hidden; white-space: nowrap;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  background: #000 url('assets/hero.jpg') center / cover no-repeat;
 }
 
 .hero-logo {
-  width: clamp(160px, 22vw, 320px);
-  height: clamp(160px, 22vw, 320px);
+  width: clamp(220px, 28vw, 420px);
+  height: auto;
   margin-bottom: 28px;
-  filter: drop-shadow(0 0 40px rgba(245, 245, 245, 0.5)) drop-shadow(0 0 80px rgba(245, 245, 245, 0.25));
+  filter: drop-shadow(0 0 14px rgba(245, 245, 245, 0.25)) drop-shadow(0 0 28px rgba(245, 245, 245, 0.1));
   animation: hero-rise 0.8s ease-out both;
 }
 
 .hero h1 {
-  font-weight: 300;
   font-size: clamp(3rem, 9vw, 5.5rem);
   letter-spacing: 0.22em;
+  margin-right: -0.22em;  /* CSS aggiunge lo spacing anche dopo l'ultima lettera: senza
+                             questo, il testo appare spostato a sinistra del centro reale */
   line-height: 1;
   animation: hero-rise 0.8s 0.1s ease-out both;
 }
@@ -207,6 +197,7 @@ a { color: inherit; }
 .scroll-label {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
+  margin-right: -0.2em;
   color: #999;
 }
 
@@ -252,7 +243,7 @@ a { color: inherit; }
 }
 
 .section-num {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 3.5rem;
   color: rgba(245, 245, 245, 0.12);
   line-height: 1;
@@ -276,6 +267,34 @@ a { color: inherit; }
   line-height: 1.7;
   color: #bbb;
   max-width: 640px;
+}
+
+.section-tagline {
+  margin-top: 24px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Chi siamo: sfondo a tutta larghezza, testo sulla colonna sinistra ── */
+.section-story {
+  position: relative;
+  scroll-margin-top: 90px;
+  background: #000 url('assets/2nd_page.png') right center / cover no-repeat;
+}
+
+.section-story-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 140px 24px;
+}
+
+@media (max-width: 720px) {
+  .section-story {
+    background-position: center 30%;
+  }
 }
 
 /* Entrata in scena allo scroll — vedi script.js (IntersectionObserver). */
@@ -332,7 +351,7 @@ a { color: inherit; }
   position: absolute;
   top: 8px;
   left: 10px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem;
   color: var(--gold);
   opacity: 0.45;
@@ -357,10 +376,319 @@ a { color: inherit; }
   border-bottom: 1px dashed currentColor;
 }
 
+.section-body--placeholder {
+  color: #777;
+  font-style: italic;
+}
+
+/* ── La rosa: sottotitolo, filtri, card tesserino, modal ── */
+.roster-subtitle {
+  margin-top: 0;
+  margin-bottom: 36px;
+  color: #999;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.roster-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.roster-filter {
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+  background: transparent;
+  border: 1px solid rgba(245, 245, 245, 0.15);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.roster-filter:hover {
+  color: var(--white);
+  border-color: rgba(245, 245, 245, 0.35);
+}
+
+.roster-filter.active {
+  color: var(--black);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.roster-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--gray);
+  border: 1px solid rgba(245, 245, 245, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: roster-card-in 0.5s ease-out forwards;
+}
+
+@keyframes roster-card-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.roster-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(200, 168, 102, 0.6);
+  box-shadow: 0 0 24px rgba(200, 168, 102, 0.25);
+}
+
+.roster-card-watermark {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, #181818 0px, #181818 10px, #1f1f1f 10px, #1f1f1f 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roster-card-watermark img {
+  width: 46%;
+  opacity: 0.08;
+  filter: grayscale(100%) brightness(2);
+}
+
+.roster-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) grayscale(10%);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.roster-card:hover .roster-card-photo {
+  filter: brightness(1) grayscale(0%);
+  transform: scale(1.04);
+}
+
+.roster-card-num {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--gold);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.roster-card-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 28px 14px 14px;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85) 70%);
+}
+
+.roster-card-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.15;
+}
+
+.roster-card-role {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 3px;
+}
+
+.roster-card[hidden] {
+  display: none;
+}
+
+/* ── Staff: sottosezione separata ── */
+.roster-staff {
+  margin-top: 64px;
+}
+
+.roster-staff-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.roster-staff-head span {
+  flex: 1;
+  height: 1px;
+  background: rgba(245, 245, 245, 0.12);
+}
+
+.roster-staff-head h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.roster-staff[hidden] {
+  display: none;
+}
+
+.roster-grid[hidden] {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .roster-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .roster-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Modal tesserino: fullscreen, foto grande + info animata ── */
+.roster-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.roster-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.roster-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.roster-modal-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.roster-modal-inner {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  max-width: 900px;
+  width: 90vw;
+  padding: 40px;
+}
+
+.roster-modal-photo {
+  flex: 0 0 auto;
+  width: min(46vw, 380px);
+  aspect-ratio: 3 / 4;
+  background: repeating-linear-gradient(135deg, #181818 0px, #181818 10px, #1f1f1f 10px, #1f1f1f 20px);
+  border: 1px solid rgba(200, 168, 102, 0.3);
+  overflow: hidden;
+  filter: blur(14px);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.roster-modal.is-open .roster-modal-photo {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.roster-modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.roster-modal-info {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+}
+
+.roster-modal.is-open .roster-modal-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.roster-modal-num {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.roster-modal-name {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.roster-modal-role {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+@media (max-width: 720px) {
+  .roster-modal-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .roster-modal-photo {
+    width: min(70vw, 320px);
+  }
+}
+
 /* ── Numeri ── */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 32px;
 }
 
@@ -372,9 +700,18 @@ a { color: inherit; }
 }
 
 .stat-value {
-  font-size: 2.8rem;
-  font-family: 'Oswald', sans-serif;
+  font-size: 3.2rem;
+  font-family: 'Bebas Neue', sans-serif;
   color: var(--white);
+  background: linear-gradient(180deg, var(--white) 0%, var(--gold) 140%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-value--text {
+  font-size: 1.6rem;
+  -webkit-text-fill-color: var(--white);
 }
 
 .stat-label {
@@ -382,6 +719,133 @@ a { color: inherit; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #888;
+}
+
+/* ── Calendario: alert "in attesa" ── */
+.calendar-alert {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background: rgba(200, 168, 102, 0.07);
+  border: 1px solid rgba(200, 168, 102, 0.35);
+  border-radius: 6px;
+}
+
+.calendar-alert-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+}
+
+.calendar-alert p {
+  font-size: 0.95rem;
+  color: var(--white);
+}
+
+/* ── Unisciti a noi: form ── */
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 480px;
+  margin-top: 28px;
+}
+
+.join-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.join-form-row label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.join-form-row input,
+.join-form-row select,
+.join-form-row textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--white);
+  background: rgba(245, 245, 245, 0.04);
+  border: 1px solid rgba(245, 245, 245, 0.15);
+  border-radius: 4px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.join-form-row input:focus,
+.join-form-row select:focus,
+.join-form-row textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.join-form-submit {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 13px 28px;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.join-form-submit:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ── Gallery: striscia orizzontale scorrevole ── */
+.gallery-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gallery-strip-img {
+  flex: 0 0 auto;
+  width: min(72vw, 360px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  scroll-snap-align: start;
+  filter: grayscale(15%);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.gallery-strip-img:hover {
+  transform: scale(1.02);
+  filter: grayscale(0%);
+}
+
+.gallery-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: rgba(245, 245, 245, 0.2);
+  border-radius: 3px;
 }
 
 /* ── Calendario ── */
@@ -434,7 +898,7 @@ a { color: inherit; }
 }
 
 .tier-card h3 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 6px;
@@ -487,11 +951,43 @@ a { color: inherit; }
 
 .footer a { color: #ccc; text-decoration: none; }
 
-.social-links {
-  margin-top: 8px;
+.footer-contacts {
+  margin-top: 12px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 14px 28px;
 }
 
-.social-links a { color: var(--gold); }
+.footer-contact {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+
+.footer-contact:hover {
+  color: var(--gold);
+}
+
+.footer-instagram {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--gold);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.footer-instagram svg {
+  width: 26px;
+  height: 26px;
+}
+
+.footer-instagram:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}

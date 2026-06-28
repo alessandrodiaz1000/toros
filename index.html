@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/logo-placeholder.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,6 +22,8 @@
     <li><a href="#squadra">Squadra</a></li>
     <li><a href="#numeri">Numeri</a></li>
     <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#unisciti">Unisciti a noi</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#sponsor">Sponsor</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
@@ -31,52 +33,94 @@
 </nav>
 
 <!--
-  Hero = immagine unica (assets/hero.jpg): pieghe di fumo + logo + "TOROS" + scroll sono
-  gia' "stampati" nell'immagine (scelta voluta: non servono cliccabili). Sopra resta solo
-  la navbar vera. L'h1 e' nascosto visivamente ma presente per SEO/screen reader.
+  Hero = sfondo fumo (assets/hero.jpg, foto/texture, nessun testo dentro) + logo/h1/scroll
+  veri in HTML sopra. Cosi' il fumo puo' restare fotografico (leggermente morbido, voluto)
+  mentre logo e testo sono sempre nitidi (SVG vettoriale + font reale) a qualsiasi
+  risoluzione/zoom, invece di essere pixel "stampati" dentro l'immagine.
 -->
 <header id="top" class="hero">
-  <h1 class="visually-hidden">Toros, squadra di calcio amatoriale</h1>
-  <img src="assets/hero.jpg" alt="Toros" class="hero-img">
+  <img src="assets/logo.svg" alt="Toros" class="hero-logo">
+  <h1>TOROS</h1>
+  <span class="hero-divider"></span>
+  <div class="scroll-indicator">
+    <span class="scroll-label">SCROLL</span>
+    <span class="scroll-pill"><span class="scroll-dot"></span></span>
+  </div>
 </header>
 
-<section id="chi-siamo" class="section reveal">
-  <div class="section-head">
-    <span class="section-num">01</span>
-    <div>
-      <p class="eyebrow">La nostra storia</p>
-      <h2>Nati per giocare insieme</h2>
+<!--
+  Sezione "Chi siamo" con sfondo a tutta larghezza (assets/2nd_page.png, va aggiunto
+  nella cartella assets con questo nome esatto). Il testo resta in una colonna a sinistra,
+  allineata alla stessa griglia delle altre sezioni (.section-story-inner replica
+  max-width/padding di .section).
+-->
+<section id="chi-siamo" class="section-story reveal">
+  <div class="section-story-inner">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div>
+        <p class="eyebrow">La nostra storia</p>
+        <h2>Più di una squadra.<br>Una famiglia.</h2>
+      </div>
     </div>
+    <p class="section-body">
+      Toros nasce nel 2024 da un gruppo di amici uniti dalla stessa passione per il calcio e
+      dagli stessi valori dentro e fuori dal campo. Non è solo un progetto sportivo, ma un modo
+      di vivere: rispetto, impegno, lealtà e fame di vittoria.
+    </p>
+    <p class="section-tagline">Stessi colori. Stessi valori. Stesso obiettivo.</p>
   </div>
-  <p class="section-body">
-    Toros nasce nel 2024 da un gruppo di compagni di classe e di campo che hanno deciso di
-    trasformare la passione per il calcio in un progetto vero. Spirito amatoriale, organizzazione
-    da club: è così che vogliamo essere percepiti, in campo e fuori.
-  </p>
 </section>
 
 <!--
-  SEZIONE SQUADRA / GALLERIA — il cuore del sito, va tenuta la più ricca di contenuto reale.
-  Per aggiungere altre foto: metti i file in assets/team/ e sostituisci i <div class="ph-card">
-  rimasti con <img class="gallery-img" src="assets/team/foto.jpg" alt="...">.
+  SEZIONE LA ROSA — tesserini di rosa e staff, generati da roster.js (array ROSTER_PLAYERS /
+  ROSTER_STAFF). Per aggiungere una foto: nell'oggetto della persona in roster.js, riempi
+  imageUrl con il percorso del file (es. "assets/team/players/dapei.jpg"). Senza imageUrl
+  la card mostra un placeholder a righe diagonali con il numero.
 -->
 <section id="squadra" class="section section-feature reveal">
   <div class="section-head">
     <span class="section-num">02</span>
     <div>
       <p class="eyebrow">Il gruppo</p>
-      <h2>La squadra</h2>
+      <h2>La rosa</h2>
     </div>
   </div>
-  <div class="grid-placeholder grid-placeholder--feature">
-    <img class="gallery-img" src="assets/team/team-1.jpg" alt="Toros, foto di squadra">
-    <img class="gallery-img" src="assets/team/match-1.jpg" alt="Toros, durante una partita">
-    <img class="gallery-img" src="assets/team/match-2.jpg" alt="Toros, durante una partita">
-    <div class="ph-card">Foto squadra</div>
-    <div class="ph-card">Foto squadra</div>
-    <div class="ph-card">Foto squadra</div>
+  <p class="section-tagline roster-subtitle">23 giocatori. Un solo simbolo.</p>
+
+  <div class="roster-filters" id="roster-filters">
+    <button class="roster-filter active" data-filter="tutti">Tutti</button>
+    <button class="roster-filter" data-filter="portiere">Portieri</button>
+    <button class="roster-filter" data-filter="difensore">Difensori</button>
+    <button class="roster-filter" data-filter="centrocampista">Centrocampisti</button>
+    <button class="roster-filter" data-filter="attaccante">Attaccanti</button>
+    <button class="roster-filter" data-filter="staff">Staff</button>
+  </div>
+
+  <div class="roster-grid" id="roster-grid"></div>
+
+  <div class="roster-staff" id="roster-staff-block">
+    <div class="roster-staff-head">
+      <span></span>
+      <h3>Staff tecnico e dirigenza</h3>
+      <span></span>
+    </div>
+    <div class="roster-grid roster-grid--staff" id="roster-staff-grid"></div>
   </div>
 </section>
+
+<!-- MODAL TESSERINO — fullscreen, popolato da script.js al click su una card. -->
+<div class="roster-modal" id="roster-modal" aria-hidden="true">
+  <button class="roster-modal-close" id="roster-modal-close" aria-label="Chiudi">&times;</button>
+  <div class="roster-modal-inner">
+    <div class="roster-modal-photo" id="roster-modal-photo"></div>
+    <div class="roster-modal-info">
+      <span class="roster-modal-num" id="roster-modal-num"></span>
+      <h3 class="roster-modal-name" id="roster-modal-name"></h3>
+      <p class="roster-modal-role" id="roster-modal-role"></p>
+    </div>
+  </div>
+</div>
 
 <!--
   SEZIONE NUMERI — sostituire i valori segnaposto (data-placeholder="true") con i dati reali:
@@ -92,20 +136,16 @@
   </div>
   <div class="stats-grid">
     <div class="stat">
-      <span class="stat-value" data-placeholder="true">—</span>
-      <span class="stat-label">Campionato / torneo</span>
+      <span class="stat-value stat-value--text">CSI Top Junior</span>
+      <span class="stat-label">Campionato</span>
     </div>
     <div class="stat">
-      <span class="stat-value" data-placeholder="true">0</span>
+      <span class="stat-value" data-count="50">0</span>
       <span class="stat-label">Partite giocate</span>
     </div>
     <div class="stat">
-      <span class="stat-value" data-placeholder="true">0</span>
+      <span class="stat-value" data-count="31">0</span>
       <span class="stat-label">Vittorie</span>
-    </div>
-    <div class="stat">
-      <span class="stat-value" data-placeholder="true">0</span>
-      <span class="stat-label">Follower social</span>
     </div>
   </div>
 </section>
@@ -121,14 +161,69 @@
       <h2>Calendario</h2>
     </div>
   </div>
-  <table class="match-table">
-    <thead>
-      <tr><th>Data</th><th>Avversario</th><th>Orario</th><th>Dove</th></tr>
-    </thead>
-    <tbody>
-      <tr><td data-placeholder="true">—</td><td data-placeholder="true">—</td><td data-placeholder="true">—</td><td data-placeholder="true">—</td></tr>
-    </tbody>
-  </table>
+  <div class="calendar-alert">
+    <span class="calendar-alert-icon">!</span>
+    <p>Siamo in attesa del calendario CSI 2026-2027.</p>
+  </div>
+</section>
+
+<!--
+  SEZIONE UNISCITI A NOI — form mailto: apre il client email dell'utente con i dati
+  precompilati e li manda a info@toros.it. Nessun backend richiesto.
+-->
+<section id="unisciti" class="section reveal">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <div>
+      <p class="eyebrow">Vieni con noi</p>
+      <h2>Unisciti a noi</h2>
+    </div>
+  </div>
+  <p class="section-body">
+    Cerchiamo giocatori e staff che vogliano far parte del progetto Toros. Compila il form,
+    ti risponderemo al più presto.
+  </p>
+  <form class="join-form" id="join-form">
+    <div class="join-form-row">
+      <label for="join-name">Nome e cognome</label>
+      <input type="text" id="join-name" name="name" required>
+    </div>
+    <div class="join-form-row">
+      <label for="join-contact">Email o telefono</label>
+      <input type="text" id="join-contact" name="contact" required>
+    </div>
+    <div class="join-form-row">
+      <label for="join-role">Ruolo</label>
+      <select id="join-role" name="role">
+        <option value="Giocatore">Giocatore</option>
+        <option value="Staff">Staff</option>
+      </select>
+    </div>
+    <div class="join-form-row">
+      <label for="join-message">Messaggio (opzionale)</label>
+      <textarea id="join-message" name="message" rows="4"></textarea>
+    </div>
+    <button type="submit" class="join-form-submit">Invia candidatura</button>
+  </form>
+</section>
+
+<!--
+  SEZIONE GALLERY — striscia orizzontale scorrevole. Per ora solo le foto già presenti
+  in assets/team/. Aggiungi altre <img class="gallery-strip-img"> quando arrivano nuove foto.
+-->
+<section id="gallery" class="section section-feature reveal">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <div>
+      <p class="eyebrow">Scatti</p>
+      <h2>Gallery</h2>
+    </div>
+  </div>
+  <div class="gallery-strip">
+    <img class="gallery-strip-img" src="assets/team/team-1.jpg" alt="Toros, foto di squadra">
+    <img class="gallery-strip-img" src="assets/team/match-1.jpg" alt="Toros, durante una partita">
+    <img class="gallery-strip-img" src="assets/team/match-2.jpg" alt="Toros, durante una partita">
+  </div>
 </section>
 
 <!--
@@ -138,7 +233,7 @@
 -->
 <section id="sponsor" class="section section-sponsor reveal">
   <div class="section-head section-head--compact">
-    <span class="section-num">05</span>
+    <span class="section-num">07</span>
     <div>
       <p class="eyebrow">Partnership</p>
       <h2>Sponsorizzazioni</h2>
@@ -193,17 +288,20 @@
 <footer id="contatti" class="footer">
   <img src="assets/logo.svg" alt="Toros" class="footer-logo">
   <p>Toros — Squadra di calcio amatoriale, fondata nel 2024</p>
-  <p><a href="mailto:info@toros.it">info@toros.it</a></p>
-  <!--
-    SOCIAL — sostituisci i # con i link reali (Instagram, TikTok, ecc.) o rimuovi le righe
-    per i social che non avete.
-  -->
-  <p class="social-links">
-    <a href="#" data-placeholder="true">Instagram</a>
-    <a href="#" data-placeholder="true">TikTok</a>
-  </p>
+  <div class="footer-contacts">
+    <a href="tel:+393662924872" class="footer-contact">+39 366 292 4872</a>
+    <a href="mailto:infotoros@gmail.com" class="footer-contact">infotoros@gmail.com</a>
+  </div>
+  <a href="https://www.instagram.com/toros.2024?igsh=MXkwYm5jZ3ZweWp0cA==" target="_blank" rel="noopener" class="footer-instagram" aria-label="Toros su Instagram">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor"/>
+    </svg>
+  </a>
 </footer>
 
+<script src="roster.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>
