@@ -6,15 +6,21 @@
 <title>Toros</title>
 <meta name="description" content="Toros — squadra di calcio amatoriale nata nel 2024.">
 <link rel="icon" href="assets/logo-placeholder.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="hero-stripes" aria-hidden="true"></div>
 
 <header class="hero">
   <img src="assets/logo-placeholder.svg" alt="Toros" class="hero-logo">
   <h1>TOROS</h1>
   <p class="hero-claim">Nati nel 2024. Giochiamo per vincere, lavoriamo per crescere.</p>
   <a href="#squadra" class="cta">Scopri la squadra</a>
+  <a href="#chi-siamo" class="scroll-hint" aria-hidden="true">↓</a>
 </header>
 
 <nav class="navdots">
@@ -26,7 +32,7 @@
   <a href="#contatti">Contatti</a>
 </nav>
 
-<section id="chi-siamo" class="section">
+<section id="chi-siamo" class="section reveal">
   <h2>Chi siamo</h2>
   <p>
     Toros nasce nel 2024 da un gruppo di compagni di classe e di campo che hanno deciso di
@@ -44,7 +50,7 @@
   Si può anche aggiungere una breve descrizione/storia sotto il titolo (sostituire il commento
   qui sotto con 2-3 frasi: come si è formato il gruppo, aneddoti, spirito della squadra).
 -->
-<section id="squadra" class="section section-dark section-feature">
+<section id="squadra" class="section section-dark section-feature reveal">
   <h2>La squadra</h2>
   <!-- <p class="section-intro" data-placeholder="true">Due righe sulla storia/spirito del gruppo, sostituibili.</p> -->
   <div class="grid-placeholder grid-placeholder--feature">
@@ -62,7 +68,7 @@
   campionato/torneo, partite giocate, vittorie, follower social. Basta cambiare il testo dentro
   ogni <span class="stat-value">.
 -->
-<section id="numeri" class="section">
+<section id="numeri" class="section reveal">
   <h2>I numeri</h2>
   <div class="stats-grid">
     <div class="stat">
@@ -88,7 +94,7 @@
   SEZIONE CALENDARIO — aggiungi/rimuovi righe <tr> con le partite reali (data, avversario,
   orario, casa/trasferta). Lascia la struttura della tabella com'è.
 -->
-<section id="calendario" class="section section-dark">
+<section id="calendario" class="section section-dark reveal">
   <h2>Prossime partite</h2>
   <table class="match-table">
     <thead>
@@ -105,7 +111,7 @@
   gli sponsor sono un effetto secondario, non lo scopo del sito. Niente trattamento "da hero"
   qui (vedi nota in style.css), titolo e copy contenuti.
 -->
-<section id="sponsor" class="section section-sponsor">
+<section id="sponsor" class="section section-sponsor reveal">
   <h2>Sponsorizzazioni</h2>
   <p>
     Toros è anche alla ricerca di sponsor che vogliano essere al fianco di un progetto giovane e
@@ -166,5 +172,6 @@
   </p>
 </footer>
 
+<script src="script.js" defer></script>
 </body>
 </html>

@@ -7,19 +7,21 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   background: var(--white);
   color: var(--black);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 h1, h2 {
-  font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
-  letter-spacing: 0.05em;
+  font-family: 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .hero {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,18 +31,36 @@ h1, h2 {
   background: var(--black);
   color: var(--white);
   padding: 0 20px;
+  overflow: hidden;
+}
+
+/* Pattern diagonale bianco/nero in stile calcio, sottile, dietro al contenuto. */
+.hero-stripes {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 245, 245, 0.05) 0px,
+    rgba(245, 245, 245, 0.05) 2px,
+    transparent 2px,
+    transparent 40px
+  );
 }
 
 .hero-logo {
   width: 120px;
   height: 120px;
   margin-bottom: 24px;
+  animation: hero-rise 0.7s ease-out both;
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 12vw, 7rem);
-  font-weight: 900;
+  font-size: clamp(3.5rem, 14vw, 8.5rem);
+  font-weight: 400;
   line-height: 1;
+  animation: hero-rise 0.7s 0.1s ease-out both;
 }
 
 .hero-claim {
@@ -48,6 +68,29 @@ h1, h2 {
   font-size: 1.1rem;
   opacity: 0.8;
   max-width: 480px;
+  animation: hero-rise 0.7s 0.2s ease-out both;
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.4rem;
+  opacity: 0.6;
+  animation: hero-rise 0.7s 0.3s ease-out both, bounce 2s 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
 }
 
 .cta {
@@ -61,12 +104,14 @@ h1, h2 {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border: 2px solid var(--white);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  animation: hero-rise 0.7s 0.3s ease-out both;
 }
 
 .cta:hover {
   background: transparent;
   color: var(--white);
+  transform: translateY(-2px);
 }
 
 .cta-light {
@@ -93,12 +138,29 @@ h1, h2 {
 }
 
 .navdots a {
+  position: relative;
   color: var(--black);
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  padding-bottom: 4px;
+}
+
+.navdots a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--black);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.navdots a:hover::after,
+.navdots a.active::after {
+  transform: scaleX(1);
 }
 
 .section {
@@ -126,6 +188,18 @@ h1, h2 {
 }
 
 .section-dark p, .section-dark h2 { color: var(--white); }
+
+/* Entrata in scena allo scroll — vedi script.js (IntersectionObserver). */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* La squadra è il cuore del sito (vetrina del gruppo, non degli sponsor): più spazio,
    titolo più grande, griglia foto più ampia rispetto alle altre sezioni. */
@@ -155,15 +229,39 @@ h1, h2 {
   margin: 0 auto;
 }
 
+.grid-placeholder {
+  counter-reset: card;
+}
+
 .ph-card {
+  counter-increment: card;
+  position: relative;
   aspect-ratio: 1;
-  background: #eee;
-  border: 1px dashed #999;
+  background: repeating-linear-gradient(45deg, #232323 0px, #232323 10px, #2a2a2a 10px, #2a2a2a 20px);
+  border: 1px solid #3a3a3a;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888;
-  font-size: 0.85rem;
+  color: #777;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.ph-card:hover {
+  transform: scale(1.03);
+}
+
+.ph-card::before {
+  content: '0' counter(card);
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  color: rgba(245, 245, 245, 0.35);
 }
 
 .gallery-img {
@@ -196,9 +294,9 @@ h1, h2 {
 }
 
 .stat-value {
-  font-size: 2.4rem;
-  font-weight: 900;
-  font-family: 'Arial Black', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  font-family: 'Anton', 'Arial Black', sans-serif;
 }
 
 .stat-label {
@@ -246,6 +344,12 @@ h1, h2 {
   background: var(--gray);
   border: 1px solid #333;
   padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
 .tier-card h3 {
