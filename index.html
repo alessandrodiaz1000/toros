@@ -13,28 +13,49 @@
 </head>
 <body>
 
-<div class="hero-stripes" aria-hidden="true"></div>
+<div class="smoke" aria-hidden="true">
+  <span class="smoke-blob smoke-blob--1"></span>
+  <span class="smoke-blob smoke-blob--2"></span>
+  <span class="smoke-blob smoke-blob--3"></span>
+</div>
 
-<header class="hero">
-  <img src="assets/logo.svg" alt="Toros" class="hero-logo">
-  <h1>TOROS</h1>
-  <p class="hero-claim">Nati nel 2024. Giochiamo per vincere, lavoriamo per crescere.</p>
-  <a href="#squadra" class="cta">Scopri la squadra</a>
-  <a href="#chi-siamo" class="scroll-hint" aria-hidden="true">↓</a>
-</header>
-
-<nav class="navdots">
-  <a href="#chi-siamo">Chi siamo</a>
-  <a href="#squadra">Squadra</a>
-  <a href="#numeri">Numeri</a>
-  <a href="#calendario">Calendario</a>
-  <a href="#sponsor">Sponsor</a>
-  <a href="#contatti">Contatti</a>
+<nav class="navbar" id="navbar">
+  <a href="#top" class="navbar-mark">
+    <img src="assets/logo.svg" alt="Toros">
+  </a>
+  <ul class="navbar-links">
+    <li><a href="#chi-siamo">Chi siamo</a></li>
+    <li><a href="#squadra">Squadra</a></li>
+    <li><a href="#numeri">Numeri</a></li>
+    <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#sponsor">Sponsor</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="navbar-toggle" id="navbar-toggle" aria-label="Apri il menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<header id="top" class="hero">
+  <img src="assets/logo.svg" alt="Toros" class="hero-logo">
+  <h1>TOROS</h1>
+  <span class="hero-divider"></span>
+  <p class="hero-claim">Nati nel 2024. Giochiamo per vincere, lavoriamo per crescere.</p>
+  <div class="scroll-indicator">
+    <span class="scroll-label">SCROLL</span>
+    <span class="scroll-pill"><span class="scroll-dot"></span></span>
+  </div>
+</header>
+
 <section id="chi-siamo" class="section reveal">
-  <h2>Chi siamo</h2>
-  <p>
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <div>
+      <p class="eyebrow">La nostra storia</p>
+      <h2>Nati per giocare insieme</h2>
+    </div>
+  </div>
+  <p class="section-body">
     Toros nasce nel 2024 da un gruppo di compagni di classe e di campo che hanno deciso di
     trasformare la passione per il calcio in un progetto vero. Spirito amatoriale, organizzazione
     da club: è così che vogliamo essere percepiti, in campo e fuori.
@@ -43,15 +64,17 @@
 
 <!--
   SEZIONE SQUADRA / GALLERIA — il cuore del sito, va tenuta la più ricca di contenuto reale.
-  Per aggiungere foto:
-  1. Metti i file immagine in assets/team/ (es. assets/team/foto1.jpg)
-  2. Sostituisci ogni <div class="ph-card"> con <img class="gallery-img" src="assets/team/foto1.jpg" alt="...">
-  Il numero di foto può essere qualsiasi: la grid si adatta da sola (vedi .grid-placeholder in style.css).
-  Si può anche aggiungere una breve descrizione/storia sotto il titolo (sostituire il commento
-  qui sotto con 2-3 frasi: come si è formato il gruppo, aneddoti, spirito della squadra).
+  Per aggiungere altre foto: metti i file in assets/team/ e sostituisci i <div class="ph-card">
+  rimasti con <img class="gallery-img" src="assets/team/foto.jpg" alt="...">.
 -->
-<section id="squadra" class="section section-dark section-feature reveal">
-  <h2>La squadra</h2>
+<section id="squadra" class="section section-feature reveal">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <div>
+      <p class="eyebrow">Il gruppo</p>
+      <h2>La squadra</h2>
+    </div>
+  </div>
   <div class="grid-placeholder grid-placeholder--feature">
     <img class="gallery-img" src="assets/team/team-1.jpg" alt="Toros, foto di squadra">
     <img class="gallery-img" src="assets/team/match-1.jpg" alt="Toros, durante una partita">
@@ -64,11 +87,16 @@
 
 <!--
   SEZIONE NUMERI — sostituire i valori segnaposto (data-placeholder="true") con i dati reali:
-  campionato/torneo, partite giocate, vittorie, follower social. Basta cambiare il testo dentro
-  ogni <span class="stat-value">.
+  campionato/torneo, partite giocate, vittorie, follower social.
 -->
 <section id="numeri" class="section reveal">
-  <h2>I numeri</h2>
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <div>
+      <p class="eyebrow">Sul campo</p>
+      <h2>I numeri</h2>
+    </div>
+  </div>
   <div class="stats-grid">
     <div class="stat">
       <span class="stat-value" data-placeholder="true">—</span>
@@ -90,11 +118,16 @@
 </section>
 
 <!--
-  SEZIONE CALENDARIO — aggiungi/rimuovi righe <tr> con le partite reali (data, avversario,
-  orario, casa/trasferta). Lascia la struttura della tabella com'è.
+  SEZIONE CALENDARIO — aggiungi/rimuovi righe <tr> con le partite reali.
 -->
-<section id="calendario" class="section section-dark reveal">
-  <h2>Prossime partite</h2>
+<section id="calendario" class="section reveal">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <div>
+      <p class="eyebrow">Prossimi impegni</p>
+      <h2>Calendario</h2>
+    </div>
+  </div>
   <table class="match-table">
     <thead>
       <tr><th>Data</th><th>Avversario</th><th>Orario</th><th>Dove</th></tr>
@@ -107,12 +140,18 @@
 
 <!--
   SEZIONE SPONSOR — di proposito sobria: il sito è prima di tutto una vetrina della squadra,
-  gli sponsor sono un effetto secondario, non lo scopo del sito. Niente trattamento "da hero"
-  qui (vedi nota in style.css), titolo e copy contenuti.
+  gli sponsor sono un effetto secondario, non lo scopo del sito. Titolo/eyebrow più piccoli
+  delle altre sezioni, niente trattamento "da hero".
 -->
 <section id="sponsor" class="section section-sponsor reveal">
-  <h2>Sponsorizzazioni</h2>
-  <p>
+  <div class="section-head section-head--compact">
+    <span class="section-num">05</span>
+    <div>
+      <p class="eyebrow">Partnership</p>
+      <h2>Sponsorizzazioni</h2>
+    </div>
+  </div>
+  <p class="section-body">
     Toros è anche alla ricerca di sponsor che vogliano essere al fianco di un progetto giovane e
     in crescita.
   </p>
@@ -159,6 +198,7 @@
 </section>
 
 <footer id="contatti" class="footer">
+  <img src="assets/logo.svg" alt="Toros" class="footer-logo">
   <p>Toros — Squadra di calcio amatoriale, fondata nel 2024</p>
   <p><a href="mailto:info@toros.it">info@toros.it</a></p>
   <!--
