@@ -17,59 +17,32 @@ body {
 }
 
 h1, h2 {
-  font-family: 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;
+  font-family: 'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 a { color: inherit; }
 
-/* ── Sfondo "fumo": qualche macchia sfocata che deriva piano, niente immagini esterne ── */
+/* ── Sfondo "fumo": texture procedurale via filtro SVG (feTurbulence), niente immagini ── */
+.smoke-defs {
+  position: absolute;
+  width: 0; height: 0;
+}
+
 .smoke {
   position: fixed;
   inset: 0;
   z-index: -2;
-  overflow: hidden;
   background: var(--black);
 }
 
-.smoke-blob {
+.smoke::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
-}
-
-.smoke-blob--1 {
-  width: 60vw; height: 60vw;
-  top: -10%; left: -10%;
-  background: radial-gradient(circle, rgba(245,245,245,0.07), transparent 70%);
-  animation: drift-1 26s ease-in-out infinite;
-}
-
-.smoke-blob--2 {
-  width: 50vw; height: 50vw;
-  bottom: -15%; right: -5%;
-  background: radial-gradient(circle, rgba(200,168,102,0.08), transparent 70%);
-  animation: drift-2 32s ease-in-out infinite;
-}
-
-.smoke-blob--3 {
-  width: 40vw; height: 40vw;
-  top: 30%; left: 50%;
-  background: radial-gradient(circle, rgba(245,245,245,0.05), transparent 70%);
-  animation: drift-1 38s ease-in-out infinite reverse;
-}
-
-@keyframes drift-1 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(6%, 4%); }
-}
-
-@keyframes drift-2 {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-5%, -6%); }
+  inset: -10%;
+  filter: url(#smokeFilter);
 }
 
 /* ── Navbar fissa ── */
@@ -188,16 +161,17 @@ a { color: inherit; }
 }
 
 .hero-logo {
-  width: 150px;
-  height: 150px;
+  width: clamp(160px, 22vw, 320px);
+  height: clamp(160px, 22vw, 320px);
   margin-bottom: 28px;
-  filter: drop-shadow(0 0 36px rgba(245, 245, 245, 0.45));
+  filter: drop-shadow(0 0 40px rgba(245, 245, 245, 0.5)) drop-shadow(0 0 80px rgba(245, 245, 245, 0.25));
   animation: hero-rise 0.8s ease-out both;
 }
 
 .hero h1 {
-  font-size: clamp(3.2rem, 11vw, 7rem);
-  letter-spacing: 0.12em;
+  font-weight: 300;
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  letter-spacing: 0.22em;
   line-height: 1;
   animation: hero-rise 0.8s 0.1s ease-out both;
 }
@@ -284,7 +258,7 @@ a { color: inherit; }
 }
 
 .section-num {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 3.5rem;
   color: rgba(245, 245, 245, 0.12);
   line-height: 1;
@@ -364,7 +338,7 @@ a { color: inherit; }
   position: absolute;
   top: 8px;
   left: 10px;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.4rem;
   color: var(--gold);
   opacity: 0.45;
@@ -405,7 +379,7 @@ a { color: inherit; }
 
 .stat-value {
   font-size: 2.8rem;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oswald', sans-serif;
   color: var(--white);
 }
 
@@ -466,7 +440,7 @@ a { color: inherit; }
 }
 
 .tier-card h3 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 6px;
