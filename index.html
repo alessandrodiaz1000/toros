@@ -13,37 +13,6 @@
 </head>
 <body>
 
-<!--
-  Fumo generato via filtro SVG, niente immagini esterne.
-  Tecnica: feTurbulence (rumore frattale = forma del fumo) usato come bump map da
-  feDiffuseLighting (luce radente) -> dà l'effetto "tessuto/fumo scuro illuminato di
-  taglio" del mockup, che riempie tutto lo sfondo. La sfumatura verso il nero ai bordi
-  e il bloom centrale dietro al logo sono in style.css (.smoke::before mask, .smoke::after).
--->
-<svg class="smoke-defs" aria-hidden="true">
-  <filter id="smokeFilter" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
-    <!-- baseFrequency BASSA = volute grandi e morbide (non grana fine); poche ottave = niente "cemento" -->
-    <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.0030" numOctaves="3" seed="14" stitchTiles="stitch" result="noise">
-      <animate attributeName="baseFrequency" dur="70s" values="0.0016 0.0030;0.0022 0.0040;0.0016 0.0030" repeatCount="indefinite"/>
-    </feTurbulence>
-    <!-- luce molto radente (elevation bassa) + pieghe profonde (surfaceScale alto) = forte contrasto -->
-    <feDiffuseLighting in="noise" lighting-color="#ffffff" surfaceScale="5" diffuseConstant="1.1" result="light">
-      <feDistantLight azimuth="235" elevation="28">
-        <animate attributeName="azimuth" dur="48s" values="235;248;235" repeatCount="indefinite"/>
-      </feDistantLight>
-    </feDiffuseLighting>
-    <!-- ammorbidisce la grana residua in fumo -->
-    <feGaussianBlur in="light" stdDeviation="1.4" result="soft"/>
-    <!-- schiaccia i neri: sfondo quasi nero, solo le creste illuminate restano visibili -->
-    <feColorMatrix in="soft" type="matrix"
-      values="1.5 0 0 0 -0.62
-              0 1.5 0 0 -0.62
-              0 0 1.55 0 -0.60
-              0 0 0 0 1"/>
-  </filter>
-</svg>
-<div class="smoke" aria-hidden="true"></div>
-
 <nav class="navbar" id="navbar">
   <a href="#top" class="navbar-mark">
     <img src="assets/logo.svg" alt="Toros">

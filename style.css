@@ -25,40 +25,6 @@ h1, h2 {
 
 a { color: inherit; }
 
-/* ── Sfondo "fumo": texture procedurale via filtro SVG (feTurbulence), niente immagini ── */
-.smoke-defs {
-  position: absolute;
-  width: 0; height: 0;
-}
-
-.smoke {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background: #000;
-}
-
-/* Texture di fumo a tutto schermo, sfumata verso il nero ai bordi (mask radiale)
-   così non si vede il bordo del riquadro del filtro e si fonde col resto della pagina. */
-.smoke::before {
-  content: '';
-  position: absolute;
-  inset: -15%;
-  filter: url(#smokeFilter);
-  -webkit-mask-image: radial-gradient(135% 105% at 50% 38%, #000 0%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
-          mask-image: radial-gradient(135% 105% at 50% 38%, #000 0%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
-}
-
-/* Bloom morbido dietro al logo + vignettatura decisa verso i bordi (centro luminoso, bordi neri). */
-.smoke::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(46% 36% at 50% 42%, rgba(255,255,255,0.10), transparent 72%),
-    radial-gradient(115% 110% at 50% 40%, transparent 30%, rgba(0,0,0,0.55) 68%, #000 100%);
-}
-
 /* ── Navbar fissa ── */
 .navbar {
   position: fixed;
@@ -163,6 +129,9 @@ a { color: inherit; }
 }
 
 /* ── Hero ── */
+/* Sfondo: texture di fumo rasterizzata (assets/hero-smoke.jpg), generata con
+   make_smoke.py. Ha gia' la vignettatura e il bagliore centrale "cotti" nell'immagine,
+   quindi sfuma da sola nel nero delle sezioni sotto. */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -172,6 +141,7 @@ a { color: inherit; }
   justify-content: center;
   text-align: center;
   padding: 0 20px;
+  background: #000 url('assets/hero-smoke.jpg') center / cover no-repeat;
 }
 
 .hero-logo {

@@ -29,6 +29,11 @@ stilizzato.
   sottile) + Inter (testo), caricati da Google Fonts.
 - `script.js` — solo vanilla JS: reveal delle sezioni allo scroll (IntersectionObserver), stato
   attivo nella navbar, toggle del menu mobile. Niente dipendenze.
+- `assets/hero-smoke.jpg` — texture di fumo dello sfondo hero (2560x1440, ~55KB), con
+  vignettatura e bagliore centrale gia' "cotti" dentro. Usata come `background` di `.hero`.
+- `assets/make_smoke.py` — script Python (numpy + Pillow) che genera `hero-smoke.jpg`.
+  Per rigenerarla/modificarla (intensita', direzione volute, tinta): edita i parametri in
+  cima e lancia `python3 assets/make_smoke.py`.
 - `assets/logo.svg` — logo ufficiale (toro stilizzato, bianco, pensato per sfondo scuro).
 - `assets/logo-placeholder.svg` — vecchio segnaposto, non più usato in pagina.
 - `assets/team/` — foto reali: `team-1.jpg` (squadra), `match-1.jpg`, `match-2.jpg` (partite).
@@ -71,3 +76,9 @@ stilizzato.
   In puro SVG (feTurbulence come bump map + feDiffuseLighting a luce radente = effetto
   tessuto/fumo scuro del mockup), con maschera radiale che sfuma i bordi nel nero e bloom
   centrale dietro al logo (style.css: .smoke::before mask + .smoke::after).
+- 2026-06-28 — Per arrivare davvero vicino al mockup, abbandonato il fumo procedurale SVG
+  (resta sempre troppo "pulito"/grigio) e passato a una TEXTURE rasterizzata generata da
+  noi: `assets/make_smoke.py` (numpy: rumore frattale anisotropo + domain warp + lighting
+  radente + vignetta/bloom cotti) produce `assets/hero-smoke.jpg`, usata come background
+  di `.hero`. Niente immagini di terzi (zero problemi di licenza). Tolto tutto il blocco
+  SVG smoke da index.html e le regole `.smoke*` da style.css.
