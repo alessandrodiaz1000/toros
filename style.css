@@ -182,16 +182,23 @@ a { color: inherit; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Variante di hero-rise con il translateX(-50%) di centering "cucito" nel keyframe:
+   un'animazione CSS sovrascrive l'intero transform statico, quindi senza questo il
+   translateX(-50%) di .scroll-indicator veniva azzerato a fine animazione. */
+@keyframes hero-rise-centered {
+  from { opacity: 0; transform: translateX(-50%) translateY(24px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  animation: hero-rise 0.8s 0.4s ease-out both;
+  animation: hero-rise-centered 0.8s 0.4s ease-out both;
 }
 
 .scroll-label {
@@ -688,7 +695,7 @@ a { color: inherit; }
 /* ── Numeri ── */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 32px;
 }
 
@@ -707,11 +714,6 @@ a { color: inherit; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.stat-value--text {
-  font-size: 1.6rem;
-  -webkit-text-fill-color: var(--white);
 }
 
 .stat-label {
