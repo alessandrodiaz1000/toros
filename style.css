@@ -134,9 +134,15 @@ a { color: inherit; }
    ritaglio ai lati su schermi molto stretti non taglia il logo. */
 .hero {
   position: relative;
-  min-height: 100vh;
-  text-align: center;
-  background: #000 url('assets/hero.jpg') center / cover no-repeat;
+  background: #000;
+  line-height: 0;            /* niente gap sotto l'immagine */
+}
+
+/* L'immagine si mostra INTERA (niente ritaglio): larghezza piena, altezza naturale. */
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Testo accessibile ma non visibile (l'h1 reale e' "stampato" nell'immagine hero). */
