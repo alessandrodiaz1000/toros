@@ -300,7 +300,8 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   .section-story {
-    background-position: center 30%;
+    /* L'immagine a quel crop risultava poco leggibile: su mobile resta solo nero. */
+    background: var(--black);
   }
 }
 
@@ -697,6 +698,13 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 32px;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 .stat {

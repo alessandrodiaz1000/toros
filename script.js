@@ -96,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // threshold basso (non una percentuale fissa come 0.15): sezioni molto alte — es. "La
+  // rosa" in colonna singola su mobile — non raggiungono mai un rapporto di intersezione
+  // alto quanto l'altezza del viewport, quindi con soglie alte restavano invisibili per
+  // sempre. Con threshold 0 basta che inizino a entrare nello schermo.
   const reveals = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -104,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0 });
   reveals.forEach((el) => revealObserver.observe(el));
 
   const navLinks = document.querySelectorAll('.navbar-links a');
