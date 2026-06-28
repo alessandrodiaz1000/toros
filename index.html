@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toros</title>
-<meta name="description" content="Toros — squadra di calcio amatoriale. Cerchiamo sponsor.">
+<meta name="description" content="Toros — squadra di calcio amatoriale nata nel 2024.">
 <link rel="icon" href="assets/logo-placeholder.svg">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -14,13 +14,13 @@
   <img src="assets/logo-placeholder.svg" alt="Toros" class="hero-logo">
   <h1>TOROS</h1>
   <p class="hero-claim">Nati nel 2024. Giochiamo per vincere, lavoriamo per crescere.</p>
-  <a href="#sponsor" class="cta">Diventa sponsor</a>
+  <a href="#squadra" class="cta">Scopri la squadra</a>
 </header>
 
 <nav class="navdots">
   <a href="#chi-siamo">Chi siamo</a>
-  <a href="#numeri">Numeri</a>
   <a href="#squadra">Squadra</a>
+  <a href="#numeri">Numeri</a>
   <a href="#calendario">Calendario</a>
   <a href="#sponsor">Sponsor</a>
   <a href="#contatti">Contatti</a>
@@ -36,11 +36,33 @@
 </section>
 
 <!--
+  SEZIONE SQUADRA / GALLERIA — il cuore del sito, va tenuta la più ricca di contenuto reale.
+  Per aggiungere foto:
+  1. Metti i file immagine in assets/team/ (es. assets/team/foto1.jpg)
+  2. Sostituisci ogni <div class="ph-card"> con <img class="gallery-img" src="assets/team/foto1.jpg" alt="...">
+  Il numero di foto può essere qualsiasi: la grid si adatta da sola (vedi .grid-placeholder in style.css).
+  Si può anche aggiungere una breve descrizione/storia sotto il titolo (sostituire il commento
+  qui sotto con 2-3 frasi: come si è formato il gruppo, aneddoti, spirito della squadra).
+-->
+<section id="squadra" class="section section-dark section-feature">
+  <h2>La squadra</h2>
+  <!-- <p class="section-intro" data-placeholder="true">Due righe sulla storia/spirito del gruppo, sostituibili.</p> -->
+  <div class="grid-placeholder grid-placeholder--feature">
+    <div class="ph-card">Foto squadra</div>
+    <div class="ph-card">Foto squadra</div>
+    <div class="ph-card">Foto squadra</div>
+    <div class="ph-card">Foto squadra</div>
+    <div class="ph-card">Foto squadra</div>
+    <div class="ph-card">Foto squadra</div>
+  </div>
+</section>
+
+<!--
   SEZIONE NUMERI — sostituire i valori segnaposto (data-placeholder="true") con i dati reali:
   campionato/torneo, partite giocate, vittorie, follower social. Basta cambiare il testo dentro
   ogni <span class="stat-value">.
 -->
-<section id="numeri" class="section section-dark">
+<section id="numeri" class="section">
   <h2>I numeri</h2>
   <div class="stats-grid">
     <div class="stat">
@@ -63,22 +85,6 @@
 </section>
 
 <!--
-  SEZIONE SQUADRA / GALLERIA — per aggiungere foto reali:
-  1. Metti i file immagine in assets/team/ (es. assets/team/foto1.jpg)
-  2. Sostituisci ogni <div class="ph-card"> con <img class="gallery-img" src="assets/team/foto1.jpg" alt="...">
-  Il numero di foto può essere qualsiasi: la grid si adatta da sola (vedi .grid-placeholder in style.css).
--->
-<section id="squadra" class="section">
-  <h2>La squadra</h2>
-  <div class="grid-placeholder">
-    <div class="ph-card">Foto squadra</div>
-    <div class="ph-card">Foto squadra</div>
-    <div class="ph-card">Foto squadra</div>
-    <div class="ph-card">Foto squadra</div>
-  </div>
-</section>
-
-<!--
   SEZIONE CALENDARIO — aggiungi/rimuovi righe <tr> con le partite reali (data, avversario,
   orario, casa/trasferta). Lascia la struttura della tabella com'è.
 -->
@@ -94,19 +100,23 @@
   </table>
 </section>
 
-<section id="sponsor" class="section sponsor">
-  <h2>Diventa nostro sponsor</h2>
+<!--
+  SEZIONE SPONSOR — di proposito sobria: il sito è prima di tutto una vetrina della squadra,
+  gli sponsor sono un effetto secondario, non lo scopo del sito. Niente trattamento "da hero"
+  qui (vedi nota in style.css), titolo e copy contenuti.
+-->
+<section id="sponsor" class="section section-sponsor">
+  <h2>Sponsorizzazioni</h2>
   <p>
-    Stiamo cercando partner che credano in un progetto giovane, serio e in crescita. Il tuo
-    marchio al fianco di Toros significa visibilità autentica, vicinanza al territorio e
-    associazione a un gruppo che gioca pulito e si impegna fuori dal campo quanto dentro.
+    Toros è anche alla ricerca di sponsor che vogliano essere al fianco di un progetto giovane e
+    in crescita.
   </p>
 
   <!--
-    PACCHETTI SPONSOR — sostituisci titolo/prezzo/benefit di ogni card con l'offerta reale.
-    Aggiungi o rimuovi <div class="tier-card"> per più o meno pacchetti.
+    PACCHETTI SPONSOR (indicativi) — sostituisci titolo/prezzo/benefit di ogni card con
+    l'offerta reale. Aggiungi o rimuovi <div class="tier-card"> per più o meno pacchetti.
   -->
-  <div class="tiers-grid">
+  <div class="tiers-grid tiers-grid--compact">
     <div class="tier-card">
       <h3 data-placeholder="true">Bronze</h3>
       <p class="tier-price" data-placeholder="true">€ —</p>
@@ -133,14 +143,13 @@
     </div>
   </div>
 
-  <a href="mailto:info@toros.it" class="cta cta-light">Scrivici per una proposta</a>
-  <!--
-    MEDIA KIT — quando esiste un PDF reale, metti il file in assets/docs/media-kit.pdf
-    e cambia questo link da mailto a href="assets/docs/media-kit.pdf" download.
-  -->
-  <p class="media-kit-note">
-    Vuoi un riepilogo numeri, foto e pacchetti in PDF?
-    <a href="mailto:info@toros.it?subject=Richiesta%20media%20kit">Richiedi il media kit</a>
+  <p class="sponsor-contact">
+    <a href="mailto:info@toros.it">Scrivici per una proposta</a> ·
+    <!--
+      MEDIA KIT — quando esiste un PDF reale, metti il file in assets/docs/media-kit.pdf
+      e cambia questo link da mailto a href="assets/docs/media-kit.pdf" download.
+    -->
+    <a href="mailto:info@toros.it?subject=Richiesta%20media%20kit">richiedi il media kit</a>
   </p>
 </section>
 
