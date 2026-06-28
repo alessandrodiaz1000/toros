@@ -67,3 +67,7 @@ stilizzato.
 - 2026-06-28 — Integrati logo e foto reali della squadra.
 - 2026-06-28 — Hero resa più fedele al mockup: logo più grande, font Oswald sottile, fumo SVG.
 - 2026-06-28 — Aggiunto questo TOROS_log.
+- 2026-06-28 — Fumo hero rifatto: da alone dietro al logo a texture piena a tutto schermo.
+  In puro SVG (feTurbulence come bump map + feDiffuseLighting a luce radente = effetto
+  tessuto/fumo scuro del mockup), con maschera radiale che sfuma i bordi nel nero e bloom
+  centrale dietro al logo (style.css: .smoke::before mask + .smoke::after).

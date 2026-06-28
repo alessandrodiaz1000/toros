@@ -13,15 +13,29 @@
 </head>
 <body>
 
-<!-- Fumo generato via filtro SVG (feTurbulence), niente immagini esterne. -->
+<!--
+  Fumo generato via filtro SVG, niente immagini esterne.
+  Tecnica: feTurbulence (rumore frattale = forma del fumo) usato come bump map da
+  feDiffuseLighting (luce radente) -> dà l'effetto "tessuto/fumo scuro illuminato di
+  taglio" del mockup, che riempie tutto lo sfondo. La sfumatura verso il nero ai bordi
+  e il bloom centrale dietro al logo sono in style.css (.smoke::before mask, .smoke::after).
+-->
 <svg class="smoke-defs" aria-hidden="true">
-  <filter id="smokeFilter" x="-20%" y="-20%" width="140%" height="140%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="11" stitchTiles="stitch" result="noise">
-      <animate attributeName="baseFrequency" dur="50s" values="0.006 0.012;0.009 0.015;0.006 0.012" repeatCount="indefinite"/>
+  <filter id="smokeFilter" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.007" numOctaves="5" seed="14" stitchTiles="stitch" result="noise">
+      <animate attributeName="baseFrequency" dur="60s" values="0.0035 0.007;0.0048 0.009;0.0035 0.007" repeatCount="indefinite"/>
     </feTurbulence>
-    <feColorMatrix in="noise" type="matrix"
-      values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0.9 0.9 0.9 0 -0.6" result="wisps"/>
-    <feGaussianBlur in="wisps" stdDeviation="4"/>
+    <feDiffuseLighting in="noise" lighting-color="#ffffff" surfaceScale="2.6" diffuseConstant="1.05" result="light">
+      <feDistantLight azimuth="238" elevation="38">
+        <animate attributeName="azimuth" dur="44s" values="238;250;238" repeatCount="indefinite"/>
+      </feDistantLight>
+    </feDiffuseLighting>
+    <!-- abbassa la luminosità e schiaccia i neri: pieghe scure + creste con un leggero riflesso freddo -->
+    <feColorMatrix in="light" type="matrix"
+      values="0.9 0 0 0 -0.16
+              0 0.9 0 0 -0.16
+              0 0 0.95 0 -0.15
+              0 0 0 0 1"/>
   </filter>
 </svg>
 <div class="smoke" aria-hidden="true"></div>

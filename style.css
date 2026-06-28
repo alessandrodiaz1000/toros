@@ -35,14 +35,28 @@ a { color: inherit; }
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: var(--black);
+  background: #000;
 }
 
+/* Texture di fumo a tutto schermo, sfumata verso il nero ai bordi (mask radiale)
+   così non si vede il bordo del riquadro del filtro e si fonde col resto della pagina. */
 .smoke::before {
   content: '';
   position: absolute;
-  inset: -10%;
+  inset: -15%;
   filter: url(#smokeFilter);
+  -webkit-mask-image: radial-gradient(135% 105% at 50% 38%, #000 0%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+          mask-image: radial-gradient(135% 105% at 50% 38%, #000 0%, #000 46%, rgba(0,0,0,0.5) 72%, transparent 100%);
+}
+
+/* Bloom morbido dietro al logo + vignettatura generale verso i bordi. */
+.smoke::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58% 44% at 50% 40%, rgba(255,255,255,0.07), transparent 70%),
+    radial-gradient(125% 120% at 50% 30%, transparent 52%, rgba(0,0,0,0.88) 100%);
 }
 
 /* ── Navbar fissa ── */
